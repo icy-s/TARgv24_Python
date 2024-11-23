@@ -1,5 +1,6 @@
 from random import * # * - kõik funktsioonid, as - funktsioonide ümbernimetus
 from math import * #pi kasutamiseks
+from statistics import *
 
 #ülesanne 1
 # print("Tere tulemast!")
@@ -33,3 +34,37 @@ from math import * #pi kasutamiseks
 # l=float(input("Ümbermõõt: "))
 # d=l/pi
 # print(f"Läbimõõdu suurus on {round(d,2)}")
+
+#ülesanne 5
+# print("Diagonaali leidmine")
+# n=float(input("Esimene külg: "))
+# m=float(input("Teine külg: "))
+# d=sqrt(n**2 + m**2)
+# print(f"Diagonaal on {round(d,3)}")
+
+#ülesanne 6
+# aeg = float(input("Mitu tundi kulus sõiduks? "))
+# teepikkus = float(input("Mitu kilomeetrit sõitsid? "))
+# kiirus = teepikkus / aeg # viga oli siin
+# print("Sinu kiirus oli " + str(kiirus) + " km/h")
+
+#ülesanne 7
+# print(mean([randint(1,10),randint(1,10),randint(1,10),randint(1,10),randint(1,10)]))
+
+#ülesanne 8
+# print("  @..@")
+# print(" (----)")
+# print("( \__/ )")
+# print('^^ "" ^^')
+
+#ülesanne 9
+# def perimetr(a:int,b:int,c:int):
+#     result = a + b + c
+#     return result
+
+#ülesanne 10
+# itemprice = 12.90
+# tip = 1.1
+# total = itemprice * tip
+# each = total / 2
+# print(f"Igaüks peab maksta {each:.2} euro")
