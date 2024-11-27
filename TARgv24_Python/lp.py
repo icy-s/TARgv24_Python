@@ -60,3 +60,8 @@ maa*=100000 #maa radium sm + maa=maa*100000
 Lmaa=2*pi*maa
 kogus=int(Lmaa/d)
 print(f"On vaja {kogus} mündi.\nMeil on vaja {kogus*2} eur")
+
+#ülesanne 5
+a="kill-koll ".capitalize()
+b="killadi-koll ".capitalize()
+print(a*2,b,a*2,b,a*4)
