@@ -107,4 +107,4 @@ print(f"Saad sõita {distance:.1f} kilomeetrit {M:.1f} minutiga.")
 ms = int(input("Sisestage minutite arv: "))
 hours = ms/60
 minutes = ms%60 #вычисляет остаток
-print(f"{ms} on {hours:.0f} tunnid ja {minutes} minutid.")
+print(f"{ms} on {hours:.0f}:{minutes}")
