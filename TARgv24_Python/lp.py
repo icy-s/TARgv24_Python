@@ -65,3 +65,46 @@ print(f"On vaja {kogus} mündi.\nMeil on vaja {kogus*2} eur")
 a="kill-koll ".capitalize()
 b="killadi-koll ".capitalize()
 print(a*2,b,a*2,b,a*4)
+
+#ülesanne 6
+sõnad = """
+Rong see sõitis tsuhh tsuhh tsuhh,
+piilupart oli rongijuht.
+Rattad tegid rat tat taa,
+rat tat taa ja tat tat taa.
+Aga seal rongi peal,
+kas sa tead, kes olid seal?
+
+Rong see sõitis tuut tuut tuut,
+piilupart oli rongijuht.
+Rattad tegid kill koll koll,
+kill koll koll ja kill koll kill.
+"""
+print(sõnad.upper())
+
+#ülesanne 7
+a = float(input("Sisesta ristküliku esimese külje pikkus (a): "))
+b = float(input("Sisesta ristküliku teise külje pikkus (b): "))
+umbermoot = 2*(a+b)
+pindala = a*b
+print(f"Ristküliku ümbermõõt on {umbermoot:.2f}")
+print(f"Ristküliku pindala on {pindala:.2f}")
+
+#ülesanne 8
+kogus = float(input("Sisesta tarbitud liitrid: "))
+km = float(input("Sisesta läbitud kilomeetrid: "))
+keskmine = (kogus*100)/km
+print(f"Sinu keskmine kütusekulu on {keskmine:.1f}L 100 kilomeetri kohta.")
+
+#ülesanne 9
+M = float(input("Sisestage minutite arv: "))
+kiirus = 29.9
+minutid = M/60
+distance = (minutid*kiirus)
+print(f"Saad sõita {distance:.1f} kilomeetrit {M:.1f} minutiga.")
+
+#ülesanne 10
+ms = int(input("Sisestage minutite arv: "))
+hours = ms/60
+minutes = ms%60 #вычисляет остаток
+print(f"{ms} on {hours:.0f} tunnid ja {minutes} minutid.")
