@@ -16,7 +16,7 @@
 #             elif vanus<100:
 #                 print("Sooduspilet")
 #             else:
-#                 print("bro mogila plachet...")
+#                 print("tasuta???")
 #        except:
 #             print("Täisarv oli vaja sisestada")
 #    else:
@@ -34,7 +34,7 @@
 #     if (nimi1 in nimed) and (nimi2 in nimed):
 #         print("Nad on pinginaabrid")
 #     else:
-#         print("OLed varas")
+#         print("Ei ole pinginaabrid")
 # else:
 #     print("Viga")
 
@@ -42,7 +42,7 @@
 # if (nimi1=="Aleksander" and nimi2=="Ksenia") or (nimi2=="Aleksander" and nimi1=="Ksenia"):
 #     print("Nad on pinginaabrid")
 # else:
-#         print("OLed varas")
+#         print("Ei ole pinginaabrid")
 
 # #ülesanne 3
 # try:
@@ -98,37 +98,70 @@
 #     elif pikkus<200:
 #                 print("Suur")
 #     else:
-#         print("vah kakoi da")
+#         print("Liiga suur oled!")
 # except:
 #     print("wrong value -_-")
 
 #ülesanne 7
+# try:
+#     sugu=input("Sisestage sugu: 'M' mehele ja 'N' naisele: ")
+#     if sugu == 'N':
+#         print("женщина")
+#     elif sugu == 'M':
+#         print("мужчина")
+#     else:
+#         raise ValueError("Ainult 'M' või 'N'!")
+#     pikkus=float(input("Sisestage pikkus: "))
+#     if pikkus<70:
+#                 print("Viga!")
+#     elif pikkus<160 and sugu == 'N':
+#                 print("Keskmine")
+#     elif pikkus<160 and sugu == 'M':
+#                 print("Lühike")
+#     elif pikkus<170 and sugu == 'N':
+#                 print("Suur")
+#     elif pikkus<170 and sugu == 'M':
+#                 print("Keskmine")
+#     elif pikkus<200 and sugu == 'N':
+#                 print("Väga suur")
+#     elif pikkus<200 and sugu == 'M':
+#                 print("Suur")
+#     else:
+#         print("Liiga suur oled!")
+# except:
+#         print("wrong value -_-")
+
+#ülesanne 8
 try:
-    pikkus=float(input("Sisestage pikkus: "))
-    if pikkus<70:
-                print("Viga!")
-    elif pikkus<160:
-                print("Lühike")
-    elif pikkus<170:
-                print("Keskmine")
-    elif pikkus<200:
-                print("Suur")
+    piim=input("kas tahad osta piima? (Jah/Ei) ")
+    if piim == "Jah":
+        print("OK")
+    elif piim == "Ei":
+        print("OK")
     else:
-        print("vah kakoi da")
-except:
-    print("wrong value -_-")
-
-try:
-    sugu=input("Sisestage sugu: 'M' mehele ja 'N' nainele: ")
-    if sugu == 'N':
-        print("женщина")
-    elif sugu == 'M':
-        print("мужчина")
+        raise ValueError("Ainult 'Jah' või 'Ei'!")
+        
+    sai=input("kas tahad osta saia? (Jah/Ei) ")
+    if sai == "Jah":
+        print("OK")
+    if sai == "Ei":
+        print("OK")
     else:
-        print("Ainult 'M' või 'N'!")
-except:
-    print("viga")
+        raise ValueError("Ainult 'Jah' või 'Ei'!")
 
+    leib=input("kas tahad osta leiva? (Jah/Ei) ")
+    if leib == "Jah":
+        print("OK")
+    if leib == "Ei":
+        print("OK")
+    else:
+        raise ValueError("Ainult 'Jah' või 'Ei'!")
 
+    mitmetukki=input("kas tahad osta mitme tükki? (Jah/Ei) ")
+    if mitmetukki == "Jah":
+        input("kui palju")
 
-    #ДОДЕЛАТЬ 7 ЗАДАНИЕ
+except ValueError as e:
+    print(f"Viga: {e}")
+
+#доделать ^^^, upper
