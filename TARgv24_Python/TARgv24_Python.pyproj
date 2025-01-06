@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8fa821be-e43c-4402-be6d-fdb1fdc5c5b4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>repka.py</StartupFile>
+    <StartupFile>if, while, for.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -24,6 +24,7 @@
     <Compile Include="if.py" />
     <Compile Include="lp.py" />
     <Compile Include="matemaatika.py" />
+    <Compile Include="if, while, for.py" />
     <Compile Include="repka.py" />
     <Compile Include="valiklaused.py" />
     <Compile Include="TARgv24_Python.py" />
