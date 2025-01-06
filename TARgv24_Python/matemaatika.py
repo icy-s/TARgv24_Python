@@ -12,7 +12,7 @@ while True:
         if raskusaste in [1, 2, 3]:
             break
         else:
-            print("Palun sisestage number vahemikus 1 kuni 3.")
+            print("Palun sisestage number vahemikus 1 kuni 3")
     except ValueError:
         print("Vale sisend. Proovige uuesti")
 
@@ -47,7 +47,7 @@ for _ in range(küsimuste_arv): # _, потому что использоват�
             kasutaja_vastus = float(input("Teie vastus: "))
             break
         except ValueError:
-            print("Palun sisestage arvuline väärtus.")
+            print("Palun sisestage arvuline väärtus")
 
     if tehe == '+':
         oige_vastus = arv1 + arv2
@@ -60,7 +60,7 @@ for _ in range(küsimuste_arv): # _, потому что использоват�
     elif tehe == '**':
         oige_vastus = arv1 ** arv2
 
-    if abs(kasutaja_vastus - oige_vastus) < 0.01:
+    if abs(kasutaja_vastus - oige_vastus) < 0.01: # учитывание погрешности
         print("Õige!")
         õiged_vastused += 1
     else:
