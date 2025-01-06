@@ -6,5 +6,7 @@ kass = "Kass"
 hiir = "Hiir"
 tegelased = [vanaisa, vanaema, laps, koer, kass, hiir]
 for tegelane in tegelased:
-    print(f"{tegelane} aitab repkat tõmmata.")
-print(f"Kõik koos tõmbasid repka välja!")
+    if tegelane == "Hiir":
+        print(f"{tegelane} tuli ja tõmbas repka välja!")
+    else:
+        print(f"{tegelane} tuli ja aitab repkat tõmmata.")
