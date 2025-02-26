@@ -1,8 +1,10 @@
-import tkinter as tk
+from tkinter import *
 from string import *
 from time import sleep
 from os import path, remove
 from tkinter import simpledialog as sd
+from tkinter import filedialog
+import smtplib,ssl,imghdr
 
 def send_email(mail):
     # Siin võiks olla kood, mis saadab e-kirja
@@ -154,11 +156,40 @@ paroolid = []
 
 ####################################################################
 
-import smtplib,ssl
+# import smtplib,ssl
+# from email.message import EmailMessage
+# def saada_kiri(nimi:str, parool:str):
+#     kellele=input("Kellele: ")
+#     kiri=""
+#     smtp_server="smtp.gmail.com"
+#     port=587
+#     sender_email="evgeny.tailov@gmail.com"
+#     password="xjjt vspa vtnp xcgy"
+#     context=ssl.create_default_context()
+#     msg=EmailMessage()
+#     msg.set_content(kiri)
+#     msg['Subject']="hea sõnad" #from Entry
+#     msg['From']="Evgeny"
+#     msg['To']=kellele
+#     try:
+#         server=smtplib.SMTP(smtp_server,port)
+#         server.starttls(context=context)
+#         server.login(sender_email,password)
+#         server.send_message(msg)
+#         print("Informatsioon","Kiri oli saadetud")
+#     except Exception as e:
+#         print("Tekkis viga!",e)
+#     finally:
+#         server.quit()
+
+
+# saada_kiri("Evgeny", 123)
+
+
 from email.message import EmailMessage
-def saada_kiri(nimi:str, parool:str):
-    kellele=input("Kellele: ")
-    kiri=""
+def saada_kiri():
+    kellele=emailentry.get()
+    kiri=kirientry.get
     smtp_server="smtp.gmail.com"
     port=587
     sender_email="evgeny.tailov@gmail.com"
@@ -169,6 +200,9 @@ def saada_kiri(nimi:str, parool:str):
     msg['Subject']="hea sõnad" #from Entry
     msg['From']="Evgeny"
     msg['To']=kellele
+    with open(file,'rb') as fpilt:
+        pilt=fpilt.read()
+    msg.add.attachment(pilt,maintype='image',subtype=imghdr.what(None.pilt))   
     try:
         server=smtplib.SMTP(smtp_server,port)
         server.starttls(context=context)
@@ -181,7 +215,44 @@ def saada_kiri(nimi:str, parool:str):
         server.quit()
 
 
-saada_kiri("Evgeny", 123)
+
+
+def vali_pilt():
+    global file
+    file=filedialog.askopenfilename()
+    l_lisatud.configure(text=file)
+    return file
+
+aken=Tk()
+aken.geometry("700x550")
+aken.title("E-kirja saatmine")
+aken.resizable(False,False)
+email=Label(text="EMAIL:",font="Calibri 26",fg="white",bg="green",width=10)
+email.grid(row=0,column=0)
+teema=Label(text="TEEMA:",font="Calibri 26",fg="white",bg="green",width=10)
+teema.grid(row=1,column=0)
+lisa=Label(text="LISA:",font="Calibri 26",fg="white",bg="green",width=10)
+lisa.grid(row=2,column=0)
+kiri=Label(text="KIRI:",font="Calibri 26",fg="white",bg="green",width=10)
+kiri.grid(row=3,column=0,pady=150)
+
+emailentry=Entry(font="Calibri 26",fg="white",bg="green",width=25)
+emailentry.grid(row=0,column=1,padx=50)
+teemaentry=Entry(font="Calibri 26",fg="white",bg="green",width=25)
+teemaentry.grid(row=1,column=1,padx=50)
+kirientry=Text(font="Calibri 26",fg="white",bg="green",width=25,height=6)
+kirientry.grid(row=3,column=1,padx=50)
+
+lisapilt=Button(text="LISA PILT",font="Calibri 26",fg="white",bg="green",width=8,command=vali_pilt)
+lisapilt.place(x=270,y=470)
+saada=Button(text="SAADA",font="Calibri 26",fg="white",bg="green",width=8)
+saada.place(x=450,y=470)
+
+
+
+aken.mainloop()
+
+
 
 
 
