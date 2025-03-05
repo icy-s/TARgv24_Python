@@ -1,3 +1,4 @@
+from logging import config
 from tkinter import *
 from string import *
 from time import sleep
@@ -5,6 +6,9 @@ from os import path, remove
 from tkinter import simpledialog as sd
 from tkinter import filedialog
 import smtplib,ssl,imghdr
+from tkinter import messagebox
+from email.message import EmailMessage
+from tkinter import ttk
 
 def send_email(mail):
     # Siin võiks olla kood, mis saadab e-kirja
@@ -185,46 +189,72 @@ paroolid = []
 
 # saada_kiri("Evgeny", 123)
 
-
-from email.message import EmailMessage
 def saada_kiri():
-    kellele=emailentry.get()
-    kiri=kirientry.get
+    kellele = emailentry.get().strip().split(",") 
+    kiri=kirientry.get("1.0", END).strip()
     smtp_server="smtp.gmail.com"
     port=587
     sender_email="evgeny.tailov@gmail.com"
-    password="xjjt vspa vtnp xcgy"
+    password="rwvx hfbo eqbo puyn"
     context=ssl.create_default_context()
     msg=EmailMessage()
     msg.set_content(kiri)
-    msg['Subject']="hea sõnad" #from Entry
+    msg['Subject']=teemaentry.get()
     msg['From']="Evgeny"
     msg['To']=kellele
-    with open(file,'rb') as fpilt:
-        pilt=fpilt.read()
-    msg.add.attachment(pilt,maintype='image',subtype=imghdr.what(None.pilt))   
+
+    if not file:
+        messagebox.showerror("Tekkis viga!", "Palun vali pilt enne kirja saatmist!")
+        return
+
     try:
-        server=smtplib.SMTP(smtp_server,port)
-        server.starttls(context=context)
-        server.login(sender_email,password)
-        server.send_message(msg)
-        print("Informatsioon","Kiri oli saadetud")
+        with open(file[0], 'rb') as fpilt:
+            pilt = fpilt.read()
+        msg.add_attachment(pilt, maintype='image', subtype=imghdr.what(None, pilt))
     except Exception as e:
-        print("Tekkis viga!",e)
+        messagebox.showerror("Tekkis viga!", f"Pildi lisamine ebaõnnestus: {e}")
+        return
+    
+    try:
+        server = smtplib.SMTP(smtp_server, port)
+        server.starttls(context=context)
+        server.login(sender_email, password)
+        server.send_message(msg)
+        messagebox.showinfo("Informatsioon", "Kiri oli saadetud")
+    except Exception as e:
+        messagebox.showerror("Tekkis viga!", f"Kirja saatmine ebaõnnestus: {e}")
     finally:
         server.quit()
 
+file = None
 
+def show_preview():
+    kellele = emailentry.get().strip().split(",")
+    teema = teemaentry.get()
+    kiri = kirientry.get("1.0", END).strip()
+    preview_message = f"Email: {', '.join(kellele)}\n\nTeema: {''.join(teema)}\n\nKiri: {''.join(kiri)}"
+    messagebox.showinfo("Eelvaade", preview_message)
 
+def lisa_allkiri():
+    kirientry.insert(END, "\n\n" + "Parimate soovidega,\nEvgeny Tailov")
 
 def vali_pilt():
     global file
-    file=filedialog.askopenfilename()
-    l_lisatud.configure(text=file)
+    file = filedialog.askopenfilenames()
+    if file:
+        lisa_text.configure(text="\n".join(file))
     return file
 
+def puhastamine():
+    global file
+    emailentry.delete(0, END)
+    teemaentry.delete(0, END) 
+    kirientry.delete("1.0", END) 
+    file = None
+    lisa_text.configure(text="...")
+
 aken=Tk()
-aken.geometry("700x550")
+aken.geometry("900x550")
 aken.title("E-kirja saatmine")
 aken.resizable(False,False)
 email=Label(text="EMAIL:",font="Calibri 26",fg="white",bg="green",width=10)
@@ -233,6 +263,8 @@ teema=Label(text="TEEMA:",font="Calibri 26",fg="white",bg="green",width=10)
 teema.grid(row=1,column=0)
 lisa=Label(text="LISA:",font="Calibri 26",fg="white",bg="green",width=10)
 lisa.grid(row=2,column=0)
+lisa_text = Label(aken, text="...", font=("Times New Roman", 12), padx=38)
+lisa_text.grid(row=2, column=1, padx=40)
 kiri=Label(text="KIRI:",font="Calibri 26",fg="white",bg="green",width=10)
 kiri.grid(row=3,column=0,pady=150)
 
@@ -243,10 +275,15 @@ teemaentry.grid(row=1,column=1,padx=50)
 kirientry=Text(font="Calibri 26",fg="white",bg="green",width=25,height=6)
 kirientry.grid(row=3,column=1,padx=50)
 
-lisapilt=Button(text="LISA PILT",font="Calibri 26",fg="white",bg="green",width=8,command=vali_pilt)
-lisapilt.place(x=270,y=470)
-saada=Button(text="SAADA",font="Calibri 26",fg="white",bg="green",width=8)
-saada.place(x=450,y=470)
+lisapilt=Button(text="LISA PILT",font="Calibri 26",fg="white",bg="green",width=8, command=vali_pilt)
+lisapilt.place(x=370,y=470)
+saada=Button(text="SAADA",font="Calibri 26",fg="white",bg="green",width=8, command=saada_kiri)
+saada.place(x=550,y=470)
+Button(text="PUHASTA", font=("Calibri", 26), fg="white",bg="red", width=8, command=puhastamine).place(x=725, y=470)
+eelvaade=Button(text="EELVAADE",font="Calibri 26",fg="white",bg="green",width=8, command=show_preview)
+eelvaade.place(x=200,y=470)
+allkiri=Button(text="ALLKIRI",font="Calibri 26",fg="white",bg="green",width=8, command=lisa_allkiri)
+allkiri.place(x=25,y=470)
 
 
 
